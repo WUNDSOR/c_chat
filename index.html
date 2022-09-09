@@ -36,6 +36,11 @@ width: 100px;
 	<div id="input-box">
 		<form @submit.prevent="addToList()">
 			<label>
+				<span>檢舉文網址：</span>
+				<input v-model="myForm.url">
+			</label>
+			<br>
+			<label>
 				<span>違規人：</span>
 				<input v-model="myForm.userId" required>
 			</label>
@@ -64,11 +69,6 @@ width: 100px;
 			</label>
 			<br>
 			<label>
-				<span>檢舉文章：</span>
-				<input v-model="myForm.reportEssay" required><br>
-			</label>
-			<br>
-			<label>
 				<span>違規事證：</span>
 				<input v-model="myForm.evidence" required><br>
 			</label>
@@ -84,7 +84,7 @@ width: 100px;
 </div>
 </body>
 <script>
-const { reactive, ref } = Vue;
+const { reactive, ref, watch } = Vue;
 const app = {
 	setup(){
 		// 板規
@@ -105,12 +105,12 @@ const app = {
 		const msg = ref('dd')
 		// 表單
 		const myForm = reactive({
+			url : '',
 			userId : '',
 			rule : 0,
 			subRule: 0,
 			count : 0,
 			crimeEssay : '',
-			reportEssay : '',
 			evidence : ''
 		})
 		const outcome = ref('')
@@ -123,7 +123,7 @@ const app = {
 違規人  ： ${myForm.userId}
 違規項目： ${rules[myForm.rule].name}${numberToText(myForm.count)} 
 違規文章： ${myForm.crimeEssay}
-檢舉文章： ${myForm.reportEssay}
+檢舉文章： ${handleURL(myForm.url)}
 罰則    ： 水桶 ${countBucketDay()}日
 違規事證：
 ${myForm.evidence}
@@ -155,6 +155,34 @@ ${myForm.evidence}
 		function copyResult() {
 			navigator.clipboard.writeText(outcome.value)
 		}
+		// C_CHATBM文章網址轉文章代碼
+		const table = [
+			['0','1','2','3','4','5','6','7'],
+			['8','9','A','B','C','D','E','F'],
+			['G','H','I','J','K','L','M','N'],
+			['O','P','Q','R','S','T','U','V'],
+			['W','X','Y','Z','a','b','c','d'],
+			['e','f','g','h','i','j','k','l'],
+			['m','n','o','p','q','r','s','t'],
+			['u','v','w','x','y','z','-']
+		]
+		function handleURL(url) {
+			console.log(url)
+			const reg = /ChatBM\/M.{0,}\./
+			const v1 = url.trim().match(reg).toString()
+			const v2 = v1.split('\.')
+			const essayCode = transformByTable(parseInt(v2[1]).toString(8)) + transformByTable(parseInt(v2[3], 16).toString(8))
+			return '#' + essayCode + '(C_ChatBM)'
+		}
+		function transformByTable (oct) {
+			if(oct.length %2 !== 0) 
+				oct = '0' + oct
+			let result = ''
+			for(let i = 0; i < oct.length; i+=2)
+				result += table[oct[i]][oct[i + 1]]
+			return result
+		}
+
 
 		return { 
 			myForm,
@@ -169,4 +197,3 @@ ${myForm.evidence}
 const myVue = Vue.createApp(app).mount("#app");
 </script>
 </html>
-
