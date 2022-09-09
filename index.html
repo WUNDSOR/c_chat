@@ -37,7 +37,7 @@ width: 100px;
 		<form @submit.prevent="addToList()">
 			<label>
 				<span>檢舉文網址：</span>
-				<input v-model="myForm.url">
+				<input v-model="myForm.url" type="URL">
 			</label>
 			<br>
 			<label>
@@ -121,7 +121,6 @@ const app = {
 			[{type : 0, name : '7D', day : 7}, {type : 1, name : '14D', day : 14}],
 		]
 
-		const msg = ref('dd')
 		// 表單
 		const myForm = reactive({
 			url : '',
