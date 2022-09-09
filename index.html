@@ -190,7 +190,7 @@ ${myForm.evidence}
 			const v1 = url.trim().match(reg).toString()
 			const v2 = v1.split('\.')
 			const essayCode = transformByTable(parseInt(v2[1]).toString(8)) + transformByTable(parseInt(v2[3], 16).toString(8))
-			return '#' + essayCode + '(C_ChatBM)'
+			return '#' + essayCode + ' (C_ChatBM)'
 		}
 		function transformByTable (oct) {
 			if(oct.length %2 !== 0) 
