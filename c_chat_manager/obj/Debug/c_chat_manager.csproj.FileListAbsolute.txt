@@ -1,0 +1,11 @@
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\bin\Debug\c_chat_manager.exe.config
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\bin\Debug\c_chat_manager.exe
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\bin\Debug\c_chat_manager.pdb
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\obj\Debug\c_chat_manager.csproj.AssemblyReference.cache
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\obj\Debug\c_chat_manager.csproj.SuggestedBindingRedirects.cache
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\obj\Debug\c_chat_manager.Form1.resources
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\obj\Debug\c_chat_manager.Properties.Resources.resources
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\obj\Debug\c_chat_manager.csproj.GenerateResource.cache
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\obj\Debug\c_chat_manager.csproj.CoreCompileInputs.cache
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\obj\Debug\c_chat_manager.exe
+C:\Users\世崧\source\repos\c_chat_manager\c_chat_manager\obj\Debug\c_chat_manager.pdb
