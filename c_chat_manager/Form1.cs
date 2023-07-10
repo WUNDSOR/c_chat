@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace c_chat_manager
 {
@@ -42,23 +41,21 @@ namespace c_chat_manager
             result = RemoveHtmlTag(result);
             // 違規人
             string userId = GetUserId(result);
-            // 違規項目
-            string type = textBox3.Text;
+            // 違規項目(不輸入的話嘗試自動取)
+            string type = GetBadSection(result);
             // 違規文章
             string badEssayCode = GetBadEssay(result);
             // 檢舉文章
             string reportEssayCode = "#" + getEssayCode(targetUrl) + " (C_ChatBM)";
             // 違規事證
             string evidence = GetEvidence(result);
-            // 水桶天數
-            string day = textBox4.Text;
             textBox2.Text += String.Format("───────────────────\r\n違規人  ：{0}" +
                 "\r\n違規項目：{1} \r\n" +
                 "違規文章：{2}\r\n" +
                 "檢舉文章：{3}\r\n" +
-                "罰則    ：水桶 {4} 日\r\n" +
-                "違規事證：\r\n{5}\r\n───────────────────\r\n",
-                userId, type, badEssayCode, reportEssayCode, day, evidence);
+                "罰則    ：水桶  日\r\n" +
+                "違規事證：\r\n{4}\r\n───────────────────\r\n",
+                userId, type, badEssayCode, reportEssayCode, evidence);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -98,26 +95,34 @@ namespace c_chat_manager
         // 獲得違規人
         private string GetUserId(string body)
         {
-            Regex reg = new Regex(@"(?<=三、被檢舉人ID)[\s\S]{0,}(?=四、違規內容節錄)");
+            Regex reg = new Regex(@"(?<=二、被檢舉人ID)[\s\S]{0,}(?=三、違規內容節錄)");
             return reg.Match(body).Groups[0].Value.Replace("請標註被檢舉人ID，否則恕不受理","").Trim();
         }
         // 獲得違規文章
         private string GetBadEssay(string body)
         {
-            Regex reg = new Regex(@"(?<=二、違規文章代碼)[\s\S]{0,}(?=三、被檢舉人ID)");
-            return reg.Match(body).Groups[0].Value.Replace("請貼上違規文章之代碼，以便板主查找違規文章", "").Replace("推文違規請貼上推文所在之文章代碼", "").Trim();
+            Regex reg = new Regex(@"(?<=一、違規文章代碼)[\s\S]{0,}(?=二、被檢舉人ID)");
+            return reg.Match(body).Groups[0].Value.Replace("請貼上違規文章包含看板資訊的文章代碼，以便板主查找違規文章", "").Replace("推文違規請貼上推文所在之文章代碼", "").Trim();
         }
         // 獲得違規事證
         private string GetEvidence(string body)
         {
-            Regex reg = new Regex(@"(?<=四、違規內容節錄)[\s\S]{0,}(?=五、違反板規條目)");
+            Regex reg = new Regex(@"(?<=三、違規內容節錄)[\s\S]{0,}(?=四、違反板規條目)");
             string v1 = reg.Match(body).Groups[0].Value;
             return Regex.Replace(v1, "請節錄違規內容並貼於此處", " ").Trim();
+        }
+        // 獲得違規項目
+        private string GetBadSection(string body)
+        {
+            Regex reg = new Regex(@"(?<=四、違反板規條目)[\s\S]{0,}(?=五、違規說明或佐證)");
+            string v1 = reg.Match(body).Groups[0].Value;
+            return Regex.Replace(v1, "請標註違反之板規條目於此處", " ").Trim();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Clipboard.SetData(DataFormats.Text, textBox2.Text);
         }
+
     }
 }
