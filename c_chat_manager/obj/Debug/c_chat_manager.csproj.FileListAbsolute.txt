@@ -20,3 +20,14 @@ C:\workspace\c-sharp\c_chat-main\c_chat_manager\obj\Debug\c_chat_manager.csproj.
 C:\workspace\c-sharp\c_chat-main\c_chat_manager\obj\Debug\c_chat_manager.csproj.CoreCompileInputs.cache
 C:\workspace\c-sharp\c_chat-main\c_chat_manager\obj\Debug\c_chat_manager.exe
 C:\workspace\c-sharp\c_chat-main\c_chat_manager\obj\Debug\c_chat_manager.pdb
+C:\workspace\c-sharp\c_chat\c_chat_manager\bin\Debug\c_chat_manager.exe.config
+C:\workspace\c-sharp\c_chat\c_chat_manager\bin\Debug\c_chat_manager.exe
+C:\workspace\c-sharp\c_chat\c_chat_manager\bin\Debug\c_chat_manager.pdb
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.csproj.AssemblyReference.cache
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.csproj.SuggestedBindingRedirects.cache
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.Form1.resources
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.Properties.Resources.resources
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.csproj.GenerateResource.cache
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.csproj.CoreCompileInputs.cache
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.exe
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.pdb
