@@ -31,3 +31,5 @@ C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.csproj.Gener
 C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.csproj.CoreCompileInputs.cache
 C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.exe
 C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.pdb
+C:\workspace\c-sharp\c_chat\c_chat_manager\bin\Debug\HtmlAgilityPack.NetCore.dll
+C:\workspace\c-sharp\c_chat\c_chat_manager\obj\Debug\c_chat_manager.csproj.CopyComplete

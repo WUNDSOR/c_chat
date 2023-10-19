@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Text;
 
 namespace c_chat_manager
 {
@@ -25,6 +26,11 @@ namespace c_chat_manager
         private void button1_Click(object sender, EventArgs e)
         {
             String targetUrl = textBox1.Text;
+            if (string.IsNullOrWhiteSpace(targetUrl))
+            {
+                MessageBox.Show("URL不能為空。請輸入有效的URL。");
+                return; 
+            }
             HttpWebRequest request = HttpWebRequest.Create(targetUrl) as HttpWebRequest;
             request.Method = "GET";
             request.ContentType = "application/x-www-form-urlencoded";
@@ -49,6 +55,8 @@ namespace c_chat_manager
             string reportEssayCode = "#" + getEssayCode(targetUrl) + " (C_ChatBM)";
             // 違規事證
             string evidence = GetEvidence(result);
+            // 違規事證上色
+            evidence = ColorEvidence(evidence);
             textBox2.Text += String.Format("───────────────────\r\n違規人  ：{0}" +
                 "\r\n違規項目：{1} \r\n" +
                 "違規文章：{2}\r\n" +
@@ -124,5 +132,32 @@ namespace c_chat_manager
             Clipboard.SetData(DataFormats.Text, textBox2.Text);
         }
 
+        private string ColorEvidence(string body)
+        {
+            StringBuilder sb = new StringBuilder();
+            string[] lines = body.Split('\n');
+
+            foreach (string line in lines)
+            {
+                try {
+                    StringBuilder lsb = new StringBuilder(line);
+
+                    string color = line.StartsWith("推") ? "\u001B[1m" : "\u001B[1;31m";
+                    lsb.Insert(0, color);
+                    lsb.Insert(lsb.ToString().IndexOf(" "), "\u001B[33m");
+                    lsb.Insert(lsb.ToString().IndexOf(":"), "\u001B[;33m");
+
+                    lsb.Insert(lsb.Length - 11, "\u001B[37m");
+
+                    sb.Append(lsb.ToString()).Append("\n");
+                } 
+                catch (Exception ex) {
+                    return body;
+                }
+            }
+
+            return sb.ToString();
+        }
+        
     }
 }
