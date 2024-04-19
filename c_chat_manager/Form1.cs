@@ -35,10 +35,20 @@ namespace c_chat_manager
             request.Method = "GET";
             request.ContentType = "application/x-www-form-urlencoded";
             request.Timeout = 30000;
+
+            // R18 COOKIE設定
+            CookieContainer cookieContainer = new CookieContainer();
+            Cookie over18Cookie = new Cookie("over18", "1");
+            over18Cookie.Domain = "ptt.cc";
+            cookieContainer.Add(over18Cookie);
+            request.CookieContainer = cookieContainer;
+
+
             string result = "";
             // 取得回應資料
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
             {
+
                 using (StreamReader sr = new StreamReader(response.GetResponseStream()))
                 {
                     result = sr.ReadToEnd();
